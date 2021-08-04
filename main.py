@@ -13,6 +13,7 @@ from GameController import Controller
 from effects import Effects
 from functools import partial
 import time
+import sys
 
 class Ui_MainWindow(object):
     controller = None
@@ -52,6 +53,10 @@ class Ui_MainWindow(object):
         self.state = 'not_started'
         self.player_turn = 1
         self.optionsPanel.setHidden(True)
+
+    def quit(self, event):
+        sys.exit()
+
 
     def setupUi(self, MainWindow):
         self.controller = Controller()
@@ -230,6 +235,7 @@ class Ui_MainWindow(object):
         self.playButton.setStyleSheet('background-color: #00DD00')
         self.quitButton = QtWidgets.QPushButton('Sair')
         self.quitButton.setStyleSheet('background-color: #DD0000')
+        self.quitButton.mousePressEvent = partial(self.quit)
         self.panelLayout.addWidget(self.playButton)
         self.panelLayout.addWidget(self.quitButton)
         self.optionsPanel.setHidden(True)
